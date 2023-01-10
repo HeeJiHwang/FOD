@@ -1,0 +1,32 @@
+{% extends 'airline/layout/layout.html' %}
+{% block script %}
+<script>
+	function deleteAction() {
+		var check = confirm("삭제 하시겠습니까?");
+		
+		if(!check){
+			return;
+		}
+		
+		location.href = '/board/inform/delete/?no={{ content.no }}';
+	}
+</script>
+{% endblock %}
+{% block content %}
+<div style="   margin-left: 33%; margin-top: 5%;">
+	<table border="1" align="center">
+		<tr height="30"  >
+			<th>제목</th>
+			<td width="650">{{ content.title }}</td>
+		</tr>
+		<tr height="50" >
+            <th> 내용 </th>
+			<td colspan="4" width="650" height="500px;">
+                {% autoescape off %}
+                    {{ content.content }}
+                {% endautoescape %}	
+			</td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

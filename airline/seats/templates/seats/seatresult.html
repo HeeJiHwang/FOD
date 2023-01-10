@@ -1,0 +1,15 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% block script %}
+<script type="text/javascript">
+   alert('{{msg}}');
+   location.href = '{{ url }}'
+</script>
+{% endblock %}
+
+
+{%block content%}
+{{seat}}
+
+{{real_seat}} 좌석이 선택되었습니다.
+{%endblock%}

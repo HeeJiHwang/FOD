@@ -1,0 +1,69 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href ="{% static '/seats/css/seat.css' %}">
+
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+
+{%block content%}
+{% load user_template %}
+<form action="/seats/seatresult/" method="get" name="seat">
+
+    <table  bolder="1" bordercolor="black" style="margin: auto;width: 50px; height: 50px;" >
+        <tr>
+            <td></td>
+            {% for i in col_list%}
+                <td>{{i}}</td>
+            {%endfor%}
+         </tr>
+        {% for i in 1|ranges:row %}
+            <tr bolder="1" bordercolor="black" >
+                <td>{{i}}</td>
+            {% for j in 1|ranges:col %}
+                <td bolder="1" bordercolor="black" >
+                {% if i|str_plus:j in change_seat %}
+                    <!-- <label>
+                    
+                    <span class="span"><input type="radio" class="span" name="seat"  value="{{i}}{{j}}" disabled ></span>
+                    </label> -->
+                    <!-- <input type="button" class="btn-check" style="display: none;" name="seat" id="s{{i}}{{j}}" autocomplete="off" value="{{i}}{{j}}" disabled>
+                    <label class="btn btn-secondary" for="s{{i}}{{j}}">X</label> -->
+                    <button type="button" class="btn btn-secondary" name="s"  value="{{i}}{{j}}" disabled onclick="" style="margin: 10px;">X</button>
+                    {%else%}
+                    <!-- <label>
+                    <input type="radio" name="seat"  value="{{i}}{{j}}" >
+                    <span></span>
+                    </label> -->
+                    <button type="button" class="btn btn-primary"  name="s"  value="{{i}}{{j}}" style="margin: 10px;" onclick="javascript:clickBtn(this)">O</button>
+                    <!-- <input type="button" class="btn-check" name="seat" id="s{{i}}{{j}}" style="display: none;"  value="{{i}}{{j}}" autocomplete="off">
+                    <label class="btn btn-secondary" for="s{{i}}{{j}}">O</label> -->
+                {%endif%}
+            </td>
+           {%endfor%}
+            </tr >                      
+        {%endfor%}
+    </table>
+    <div class="clear">
+        <div style="margin-left: 55%;">
+            <input style="display: inline;" type="hidden" name="idx" value="{{idx}}">
+            <input id = 'seat' style="display: inline;" type="hidden" name="seat" value="">
+            <input style="display: inline;" type="submit" value="좌석선택">   
+        </div> 
+    </div>
+    <script>
+        function clickBtn(btn){
+            seat = document.getElementById('seat')
+            seat.value = btn.value;
+            console.log(seat);
+        }
+
+    </script>
+</form>
+{%endblock%}

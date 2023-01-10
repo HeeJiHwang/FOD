@@ -1,0 +1,240 @@
+{% extends 'admin_manage/layout/layout.html' %}
+{% block script %}
+<script>
+	function deleteAction() {
+		var check = confirm("삭제 하시겠습니까?");
+		
+		if(!check){
+			return;
+		}
+		
+		location.href = '/admin_manage/qna/adminqnadelete/?no={{ content.no }}';
+	}
+</script>
+{% endblock %}
+{% block content %}
+
+<!-- <style>
+
+#adminqa {
+	display: flex;
+	justify-content: center;
+	background-color: white;
+}
+.qna-container {
+	justify-content: center;
+	display: flex;
+	background-color: white;
+}
+
+.qna-table {
+	display: relative;
+	justify-content: center;
+	background-color: lightblue;
+	width: 50%;
+	top: 50%;
+}
+
+.h {
+	display: flex;
+	justify-content: center;
+	letter-spacing: 5px;
+	font-weight: bold;
+	padding: 20px;
+}
+
+.contents1 {
+	display: flex;
+	/* justify-content: ; */
+	border-bottom: 1px solid black;
+	padding: 2px;
+}
+
+/* .contents2 {
+	display: flex;
+	justify-content: center;
+	border: 1px dotted left black;
+} */
+
+.h2 {
+	display: flex;
+	justify-content: ;
+	border-bottom: 1px solid black;
+	padding: 5px;
+}
+
+.table {
+	border-style: solid;
+	border: 10px;
+}
+</style> -->
+<!-- <body id="adminaq">
+	<div class="qna-container">
+		<div  class="qna-table">
+			<h3 class="h">고객 QnA 관리 창</h3>
+				<div class="contents1"> 제목 : {{ content.title}}</div>
+				
+				
+				<div class="contents1"> 작성자 : {{ content.m_no.id }}</div>
+			<h3 class="h2">내용</h3>
+				<div class= colspan="4" class="table">
+					{% autoescape off %}
+						{{ content.content }}
+					{% endautoescape %}	
+				</div>
+			
+			<h3 class="h2">답글</h3>
+				<div colspan="4" class="table">
+					{% if content.answer == None %}
+					-
+					{% else%}   
+						{{ content.answer }}
+					{%endif%}
+				</div>
+
+				<div class="button"  >
+					<input type="button" value="삭제" onclick="deleteAction()">
+					<input type="button" value="목록" onclick="location.href='/admin_manage/qna/'">
+				</div> 
+
+
+				<div>
+					<form action="/admin_manage/{{ content.no }}/comment" method="post">
+						{% csrf_token %}
+						<textarea rows="3" cols="60" name = "content"></textarea>
+						<span ><button >댓글달기</button></span>
+					</form>
+				</div>
+				{% for comment in comments%}
+				<div >
+					{{ comment.answer }} <br>
+					<span >{{ Qna.m_no.id }}</span>
+					<!-- {% if request.session.login == comment.m_no.no %}
+						<input type="button" value="삭제" onclick="document.location.href='/board/comment/{{comment.no}}'">
+					{% endif %} -->
+				</div>
+				{% endfor %}
+			
+		</div> 	
+	</div>
+</body> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="width: 90%; margin: 0px auto;">
+	<table  class="table" style="width: inherit; margin: 0px auto;">
+		<tr>
+			<hr>
+			<th>제목</th>
+			<td>{{ content.title}}</td>
+		</tr>
+		<tr>
+			<td>
+				<br>                       
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br>                       
+			</td>
+		</tr>
+		<tr>
+			<th>작성자</th>
+			<td>{{ content.m_no.id }}</td>
+		</tr>
+		<tr>
+			<td>
+				<br>                       
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br>                       
+			</td>
+		</tr>
+		<tr>
+            <th> 내용 </th>
+			<td colspan="4">
+                {% autoescape off %}
+                    {{ content.content }}
+                {% endautoescape %}	
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br>                       
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br>                       
+			</td>
+		</tr>
+		<tr>
+            <th> 답글 </th>
+			<td colspan="4">
+			{% if content.answer == None %}
+				-
+			{% else%}   
+				{{ content.answer }}
+			{%endif%}
+			</td>
+		</tr>
+	</table> 
+	<hr>
+	<div class="button"  style="width: inherit; margin: 0px auto; display:  flex; justify-content: right;">
+		<input type="button" value="삭제" onclick="deleteAction()">
+		<input type="button" value="목록" onclick="location.href='/admin_manage/qna/'">
+	</div>  
+	<div style="width: inherit; margin: 10px auto;">
+		<form action="/admin_manage/{{ content.no }}/comment" method="post">
+			{% csrf_token %}
+			<textarea rows="3" cols="135" name = "content"></textarea>
+			<span style="float: right;"><button style="width: 70px; height: 75px;">댓글달기</button></span>
+		</form>
+	</div>
+	{% for comment in comments%}
+	<div style="width: inherit; margin: 10px auto;">
+		{{ comment.answer }} <br>
+		<span style="float: right;">{{ Qna.m_no.id }}</span>
+		<!-- {% if request.session.login == comment.m_no.no %}
+			<input type="button" value="삭제" onclick="document.location.href='/board/comment/{{comment.no}}'">
+		{% endif %} -->
+	</div>
+	{% endfor %}	
+</div>
+{% endblock %}

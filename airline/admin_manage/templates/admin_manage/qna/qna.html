@@ -1,0 +1,57 @@
+{% extends 'admin_manage/layout/layout.html' %}
+
+{%block content%}
+<div style="width: 90%; margin: 0px auto;">
+    <table style="width: inherit; margin: 0px auto;">
+        <tr>
+            <th>제목</th>
+            <th>카테고리</th>
+            <th>회원 ID</th>
+            <th>내용</th>
+            <th>작성일</th>
+        </tr>
+        {%for q in list%}
+            <tr>
+                <td><a href="/admin_manage/qna/adminqnaread/?no={{q.no}}">{{q.title}}</a></td>
+                <td><a href="/admin_manage/qna/adminqnaread/?no={{q.no}}">{{q.qc_no.name}}</a></td>
+                <td><a href="/admin_manage/qna/adminqnaread/?no={{q.no}}">{{q.m_no.id}}</a></td>
+                <td><a href="/admin_manage/qna/adminqnaread/?no={{q.no}}">{{q.content}}</a></td>
+                <td>{{q.date}}</td>
+            </tr>
+        {% empty %}
+            <td colspan="5" style="text-align: center;">
+                글목록이 존재하지 않습니다.
+            </td>
+        {%endfor%}
+        </tr>
+    </table>
+    <div style="text-align: center; margin-top: 10px;">
+        {% if list.has_previous %}
+            <a href="/admin_manage/qna/qna/?page=1">[<<]</a>
+            <a href="/admin_manage/qna/qna/?page={{list.previous_page_number}}">[<]</a>
+        {% else %}
+            [<<][<] 
+        {% endif %}
+        {% for page_number in list.paginator.page_range %}
+            {% if start_page <= page_number and end_page >= page_number %}
+                {% if page_number == list.number %}<!-- [{{page_number}}] -->
+                    <a href="#" style="font-weight:bolder;color:blueviolet;">[{{page_number}}]</a>
+                {%else%}
+                    <a href="/admin_manage/qna/qna/?page={{page_number}}">[{{page_number}}]</a>
+                {%endif%}
+            {% endif %}
+        {%endfor%}
+        {% if list.has_next %}
+        <a href="/admin_manage/qna/qna/?page={{list.next_page_number}}">[>]</a>
+        <a href="/admin_manage/qna/qna/?page={{last_page}}">[>>]</a>
+        {% else %}
+            [>][>>] 
+        {% endif %}
+    </div>
+  
+        {{msg}}
+    
+</div>
+
+</div>
+{%endblock%}

@@ -1,0 +1,222 @@
+@charset "UTF-8";
+
+/* clear 적용 */
+.clear {
+    clear: both;
+}
+
+/* reservation.html */
+#reservation_form {
+    margin: 15px;
+    padding: 60px 30px;
+    font-size: 20px;
+}
+
+#reservation_form td{
+    padding: 25px 0;
+}
+
+.de-ari {
+    margin-right: 20px;
+}
+
+.select-decoration:hover {
+    color: #6495ed;
+}
+
+
+/* selectflight.html */
+#selectflight_div {
+    margin: 15px;
+    padding: 60px 30px;
+}
+
+#reservations_l {
+    list-style-type: none;
+}
+
+#reservations_l li{
+    display: flex;
+    float: left;
+}
+
+#reservations_l li div{
+    padding: 10px 15px;
+    margin: 5px;
+}
+
+.travle_font1 {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.travle_font1 img {
+    width: 45px;
+    height: auto;
+}
+
+.travle_font2 {
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+.travle_font3 {
+    padding: 20px 0;
+    font-size: 20px;
+}
+
+
+/* transaction.html */
+/* 선택한 항공 스케쥴 정보 CSS */
+#transaction_div {
+    margin: 15px;
+    padding: 60px 30px;
+}
+
+#travle_info{
+    list-style-type: none;
+    padding: 15px;
+}
+
+#travle_info li {
+    border: 1px solid #6495ed;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+
+
+#passanger_info {
+    list-style-type: none;
+}
+
+.subtitle {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* #passanger_info input[type=button]::before {
+    color: #fff;
+    outline: none;
+    background: #6495ed;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #fff;
+}
+
+#passanger_info input[type=button]::after {
+    color: #fff;
+    background-color: rgb(186, 186, 186);
+} */
+
+#passanger_info li {
+    padding: 15px 0;
+}
+
+#passanger_info input[type=text] {
+    padding: 10px 0;
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    background: transparent;
+}
+
+#passanger_info input[type=radio] {
+    font-size: 20px;
+}
+
+
+#agree_check li div {
+    margin: 30px 0;
+    padding: 10px 0;
+}
+
+#agree_check li div input {
+    margin-right: 10px;
+}
+
+
+#agree input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+#agree_check input[type=button]::before {
+    color: #fff;
+    outline: none;
+    background: #6495ed;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #fff;
+}
+
+#agree_check input[type=button]::after {
+    color: #fff;
+    background-color: rgb(186, 186, 186);
+}
+
+
+#button_form {
+    margin-top: 35px;
+}
+
+
+
+
+/* 공통의 버튼 디자인 */
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    background: #6495ed;
+  }
+
+
+
+/* paymentpage.html CSS */
+#payment_cont {
+    margin: 15px;
+    padding: 60px 30px;
+}
+
+#payment_inform input[type=radio]{
+    margin-right: 30px;
+}
+
+#card_num_form {
+    display: none;
+    margin: 30px 0;
+    padding: 10px;
+    border: 2px solid #6495ed;
+}
+
+#bank_account {
+    display: none;
+    margin: 30px 0;
+    padding: 10px;
+    border: 2px solid #6495ed;
+}
+
+#final_money {
+    margin-top: 30px;
+}
+
+#final_money span {
+    color: #6495ed;
+}
+
+

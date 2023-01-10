@@ -1,0 +1,30 @@
+{% extends 'admin_manage/layout/layout.html' %}
+
+{%block content%}
+<h3>모든 예매내역 조회 페이지</h3>
+
+
+{% for i in passenger %}
+    <hr>
+    스케줄 {{i.re_idx.f_no.no}}  |  {{i.re_idx.f_no.route_no.code}}  | 출발시간 : {{i.re_idx.f_no.departure_time}}
+    &nbsp;
+    <div>
+        <ul>
+            <li>no&nbsp; {{i.no}} &nbsp;&nbsp;|&nbsp; 예매번호&nbsp; {{i.re_idx.re_no}} &nbsp;&nbsp;|&nbsp; 
+                이름&nbsp;  {{i.re_idx.m_no.last_name}}&nbsp;{{i.re_idx.m_no.first_name}} &nbsp;&nbsp;|&nbsp; 
+                체크인&nbsp;&nbsp;&nbsp;
+                {% if i.check_in == 0 %}
+                    O
+                {% else %}
+                    X
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    <br>
+{% endfor %}
+
+
+{%endblock%}
+
+

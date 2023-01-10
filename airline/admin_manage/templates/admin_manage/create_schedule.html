@@ -1,0 +1,110 @@
+{% extends 'admin_manage/layout/layout.html' %}
+
+{% block script%}
+<script type="text/javascript">
+	function checkJoin(){
+        if(document.join.at_no.value==""){
+            alert("편명을 입력하십시오!")
+            return false
+        }else if(document.join.route_no.value == ""){
+			alert("경로를 입력하십시오!");
+            return false
+        }else if(document.join.departure_date.value == ""){
+			alert("출발날짜를 입력하십시오!");
+            return false
+        }else if(document.join.arrival_date.value == ""){
+			alert("도착날짜를 입력하십시오!");
+            return false
+        }else if(document.join.departure_time.value == ""){
+			alert("출발시간를 입력하십시오!");
+            return false
+        }else if(document.join.arrival_time.value == ""){
+			alert("도착시간를 입력하십시오!");
+            return false
+        }else if(document.join.gate_number.value == ""){
+			alert("탑승구를 입력하십시오!");
+            return false
+        }else{
+            return true
+		}        
+	}
+</script>
+
+
+{%endblock%}
+
+
+
+{%block content%}
+
+<div>
+    <form action="/admin_manage/create_result/" method="post" name = "join" onsubmit="return checkJoin()">
+        {% csrf_token %}
+        <table>
+            <caption style="font-size: 1.5em; font-weight: bolder;">항공 스케쥴 생성<br><br></caption>
+            <tr>
+                <td>항공 편명</td>
+                <td>
+                    <select name ="at_no">
+                        <option value="" selected>-- 선택 --</option>
+                        <option value="KE101">KE101</option>
+                        <option value="KE102">KE102</option>
+                        <option value="KE103">KE103</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>route</td>
+                <td>
+                    <select name ="route_no">
+                        <option value="" selected>-- 선택 --</option>
+                        <option value="1">ICN-PUS</option>
+                        <option value="2">ICN-TAE</option>
+                        <option value="3">GMP-PUS</option>
+                        <option value="4">GMP-CJU</option>
+                        <option value="5">GMP-RSU</option>
+                        <option value="6">GMP-USN</option>
+                        <option value="7">GMP-HIN</option>
+                        <option value="8">GMP-KPO</option>
+                        <option value="9">PUS-ICN</option>
+                        <option value="10">TAE-ICN</option>
+                        <option value="11">CJU-GMP</option>
+                        <option value="12">RSU-GMP</option>
+                        <option value="13">USN-GMP</option>
+                        <option value="14">HIN-GMP</option>
+                        <option value="15">KPO-GMP</option>
+                        <option value="16">PUS-CJU</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>출발날짜</td>
+                <td ><input type="date" name="departure_date" min="{%now 'Y-m-d' %}"></td>
+            </tr>
+            <tr>
+                <td>도착날짜</td>
+                <td ><input type="date" name="arrival_date" min="{%now 'Y-m-d' %}"></td>
+            </tr>
+            <tr>
+                <td>출발시간</td>
+                <td><input type="text" name = "departure_time" placeholder="형식 00:00"></td>
+            </tr>
+            <tr>
+                <td>출발시간</td>
+                <td><input type="text" name = "arrival_time" placeholder="형식 00:00"></td>
+            </tr>
+            <tr>
+                <td>탑승구</td>
+                <td><input type="text" name = "gate_number"></td>
+            </tr>
+            <tr>
+                
+                <td colspan="2"><input type="submit" value="생성하기"></td>
+            </tr>
+            
+    </form>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'airline/layout/layout.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href ="{% static '/reservation/css/style.css' %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/reservation/script/selecflight.js' %}"></script>
+
+{% endblock %}
+
+
+{%block content%}
+{% load user_template %}
+
+    <div id="payment_cont">
+        <form action="/reservation/inquiry/" name="frm" method="POST" >
+
+            {% csrf_token %}
+            <!-- 예매에서 필요한 정보 hidden으로 넘겨줌 -->
+            <input type="hidden" name="go_schedule_id" value="{{go_schedule_id}}">
+            <input type="hidden" name="go_type" value="{{go_type}}">
+            <input type="hidden" name="final_money" value="{{final_money}}">
+            <input type="hidden" name="re_type" value="{{ re_type }}">
+            <input type="hidden" name="way_type" value="{{ way_type }}">
+
+            <ul id="payment_inform" type="none">
+                <li>
+                    <p class="travle_font1">결제 수단</p>
+                    {% if re_type == "예매" %}
+                        <div class="travle_font2 choice_deco">
+                            카드결제 <input id="card" type="radio" name="method" value="0" onchange="show_way()">
+                            무통장입금 <input id="account" type="radio" name="method" value="1" onchange="show_way()">
+                        </div>
+                    {% elif re_type == "마일리지예매" %}
+                        <div class="travle_font2 choice_deco">
+                            마일리지 예매
+                            <input id="account" type="hidden" name="method" value="2">
+                        </div>
+                    {% endif %}
+                </li>
+                <li>
+                    <div id="card_num_form">
+                        <h3>카드번호 입력</h3>
+                        <input type="text" name="card_num1"> - 
+                        <input type="text" name="card_num2"> - 
+                        <input type="text" name="card_num3"> - 
+                        <input type="text" name="card_num4">
+                    </div>
+                </li>
+                <li>
+                    <div id="bank_account">
+                        <h3>실시간 계좌 이체</h3>
+                        <h4>우리은행 1444 - 555 - 123654</h4>
+                        <h4>이용기관명 : (주)NDYAirline</h4>
+                    </div>
+                </li>
+                <li>
+                    <div id="final_money">
+                        <h3>최종 결제 금액 : <span>{{final_money}}</span></h3>
+                    </div>
+                </li>
+            </ul>
+            
+            <input class="custom-btn btn-3" type="submit" value="결제하기" style="float: right;" onclick="alert_pay()">
+        </form>
+    </div>
+
+{% endblock %}

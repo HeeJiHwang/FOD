@@ -1,0 +1,58 @@
+{%extends 'airline/layout/layout.html'%}
+
+{%block content%}
+<br><br><br><br>
+<h1>수하물 안내</h1>
+<p>여행에 필요한 짐을 준비하실 때 아래 내용을 참고해 주세요.</p>
+<br><br>
+<ul id = "menu">
+    <li><a href = "#content1">수하물 준비할때</a></li>
+    <li><a href = "#content2">수하물 수속할때</a></li>
+    <li><a href = "#content3">수하물 수취할때</a></li>
+</ul>      
+<br><br><br><br>
+<h2 style="color: red;">수하물 준비 방법 및 유의사항</h2>
+<font size="5"><p id="content1"><strong>수하물 준비할때</strong></p></font><br>
+<img align="center" src="/static/images/baggage.png" alt="수하물img" style="width:100%">
+<div>
+    <ul type="square">
+        <ol>
+            <li>이름, 주소지, 목적지가 잘 보이도록 영문으로 작성한 이름표를 붙입니다.</li><br>
+            <li>자전거, 서핑보드 등과 같은 스포츠 용품이나 반려동물 등 특수 수하물은 미리 항공사에 문의해 주세요.</li><br>
+            <li>일부 품목은 위탁하거나 휴대할 수 없습니다. 운송 제한 품목에 대한 자세한 내용은 아래 링크를 눌러 참고해 주세요.</li>
+        </ol>
+    </ul>
+    <a href="/airline/restricteditems/" class="link -inner" target="_self">
+        <font size="5">운송 제한 품목 자세히 보기>>  </font>
+    </a>
+</div>
+<br><br>
+<div>
+    <font size="5"><p id="content2"><strong>수하물 수속할때</strong></p></font><br>
+    <img align="center" src="/static/images/move.png" alt="moveimg" style="width:100%">
+</div>
+<div>
+    <ul type="square">
+        <ol>
+            <li>공항에서 측정한 가방의 무게는 가정에서 측정한 무게와 다를 수 있습니다.</li><br>
+            <li>초과 수하물 요금 지불과 관계없이, 일부 국가에서는 32kg/70lb를 초과하는 가방은 위탁할 수 없습니다.</li><br>
+            <li>기내 반입 제한 물품이 휴대 수하물에 포함되지 않도록 확인합니다.</li><br>
+            <li>다른 사람의 수하물을 대리 수속할 수 없습니다.</li><br>
+            <li>도착 공항에서 수하물을 원활하게 수취하기 위해서는 도착할 때까지 수하물 표를 보관하는 것이 좋습니다.</li>
+        </ol>
+    </ul>
+</div>
+<br><br>
+<div>
+    <font size="5"><p id="content3"><strong>수하물 수취할때</strong></p></font><br>
+    <img align="center" src="/static/images/getbaggage.png" alt="getbaggageimg" style="width:100%">
+    <br><br>
+        <ul type="square">
+            <ol>
+                <li>수하물 수취대에서 수하물을 찾은 후 본인 것이 맞는지 수하물 표를 확인합니다.</li><br>
+                <li>세관신고 물품이 있는 경우에는 기내에서 배부하는 ‘여행자 휴대품 신고서’에 해당 사항을 작성하여 세관 직원에게 여권과 함께 제출합니다.</li><br>
+            </ol>
+        </ul>
+</div>
+
+{%endblock%}

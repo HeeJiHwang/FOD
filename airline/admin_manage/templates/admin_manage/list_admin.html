@@ -1,0 +1,24 @@
+{% extends 'admin_manage/layout/layout.html' %}
+
+{%block content%}
+리스트 페이지양
+
+<ul>
+{%for a in admin%}
+
+    <li>{{a.no}}</li>
+    <li>{{a.id}}</li>
+    <li>{{a.pw}}</li>
+    <li>{{a.name}}</li>
+    <li>{{a.d_no.name}}</li>
+    <li>{{a.email}}</li>
+    <li>-------------------</li>
+{%endfor%}
+</ul>
+
+
+</table>
+
+{%endblock%}
+
+

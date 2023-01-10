@@ -1,0 +1,101 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href ="{% static '/reservation/css/style.css' %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/reservation/script/selecflight.js' %}"></script>
+
+{% endblock %}
+
+{% block content%}
+
+    {% load user_template %}
+
+    <div id="selectflight_div">
+        <form action="/reservation/transaction/" name="frm" method="post" onsubmit="return submit_info()">
+            {% csrf_token %}
+            <table id="reservation_t">
+                <tr>
+                    <td class="travle_font1">
+                        {{depart.code}}
+                        <img src="{% static 'reservation/images/airplane.png' %}" alert="비행기 아이콘">
+                        {{arri.code}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="travle_font2">
+                        오는편 {{depart.code}}  {{depart.name}} ->  {{arri.code}}   {{arri.name}}
+                    </td>
+                </tr>
+                <input type="hidden" name="depart_no" value="{{depart.no}}">
+                <input type="hidden" name="arri_no" value="{{arri.no}}">
+            </table>
+            
+            <!-- hidden으로 넘길 데이터 -->
+            <input type="hidden" name="comeDate" value="{{ comeDate }}">
+            <input type="hidden" name="goDate" value="{{ goDate }}">
+            <input type="hidden" name="re_type" value="{{ re_type }}">
+            <input type="hidden" name="way_type" value="{{ way_type }}">
+
+            <ul id="reservations_l">
+            {% for i in schedule %}
+                <li class="travle_font3">
+
+                    <div>
+                        {{i.at_no.no}} / {{i.at_no.name}}
+                    </div>
+                        <div>
+                            오는 날: {{ comeDate }}
+                        </div>
+                    <div>
+                        {{i.departure_time}} → {{i.arrival_time}}
+                    </div>
+
+                    {% if re_type == "예매" %}
+                        <div class="select-decoration">
+                            <input type="radio" name="amount" value="{{ i.no }}_{{ i.route_no.amount|i_int|special_price:i.departure_time }}_1">
+                            특가 : {{ i.route_no.amount|i_int|special_price:i.departure_time }}
+                        </div>
+                        <div class="select-decoration">
+                            <input type="radio" name="amount" value="{{ i.no }}_{{ i.route_no.amount|i_int|discount_price:i.departure_time }}_2">
+                            할인 : {{ i.route_no.amount|i_int|discount_price:i.departure_time }}
+                        </div>
+                        <div class="select-decoration">
+                            <input type="radio" name="amount" value="{{ i.no }}_{{i.route_no.amount}}_3">
+                            정상운임 : {{i.route_no.amount}}
+                        </div>
+                    {% elif re_type == "마일리지예매" %}
+                        <div class="select-decoration">
+                            <input type="radio" name="mileage" value="{{ i.no }}_{{i.route_no.mileage}}_3">
+                            정상운임 : {{i.route_no.mileage}}
+                        </div>
+                    {% endif %}
+                    <div>
+                        잔여 좌석 : {{i.remain_seats}}
+                    </div>
+                {% empty %}
+                    데이터 없습니다.
+                    
+                </li>
+                {%endfor%}
+            </ul>
+            <div class="clear"></div>
+            <input id="no" type="hidden" name="no" value="1">
+            <input id="money" type="hidden" name="money" value="2">
+            <input id="type" type="hidden" name="type" value="3">
+
+            <!-- 가는 스케쥴에 대한 정보 -->
+            <input id="go_no" type="hidden" name="go_no" value="{{go_no}}">
+            <input id="go_type" type="hidden" name="go_type" value="{{go_type}}">
+            <input id="go_money" type="hidden" name="go_money" value="{{go_money}}">
+
+            <div>
+                <input type="submit" value="다음여정" class="custom-btn btn-3">
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% load static %}
+
+{% block script %}
+    <script src="{% static '/login/js/login_script.js' %}"></script>
+{% endblock %}
+
+
+
+
+{%block content%}
+<br><br><br><br>
+<h1>나의 정보<a href="/login/mymileges/">/내 마일리지</a>/<a href="/inquiry/">내 예약목록</a></h1><hr>
+<div>
+    <table border="0" style="color: d9dbe1; width: 1200px; height: 700px;">
+        <tr>
+            <td rowspan="17" valign="top" >기본정보</td>
+            <td>성명</td>  
+        </tr>
+        <tr>
+            <font size="4"><td><strong>{{member.last_name}}{{member.first_name}}</strong><hr></td></font>
+        </tr>
+        <tr>
+            <td>스카이패스 회원번호</td>  
+        </tr>
+        <tr>
+            <font size="4"><td><strong>{{member.no}}</strong><hr></td></font>
+        </tr>
+        <tr>
+            <td>아이디</td>  
+        </tr>
+        <tr>
+            <font size="4"><td><strong>{{member.id}}</strong><hr></td></font>
+        </tr>
+        <tr>
+            <td>성별</td>  
+        </tr>
+        <tr>
+            <font size="4"><td><strong>
+                {% if member.gender == 0%}
+                    남자
+                {%else%}
+                    여자
+                {%endif%}
+            </strong><hr></td></font>
+        </tr>
+        <tr>
+            <td>생년월일</td>  
+        </tr>
+        <tr>
+            <font size="4"><td><strong>{{member.birth_date}}</strong><hr></td></font>
+        </tr>
+        <tr>
+            <td>이메일 주소</td>  
+        </tr>
+        <tr>
+            <font size="4"><td><strong>{{member.email}}</strong><hr></td></font>
+        </tr>
+        <tr>
+            <td>휴대전화 번호</td>  
+        </tr>
+        <tr>
+            <font size="4"><td><strong>{{member.phone}}</strong><hr></td></font>
+        </tr>
+        <tr>
+            <td>거주 국가/지역</td>  
+        </tr>
+        <tr>
+            <font size="4"><td><strong>대한민국</strong><hr></td></font>
+        </tr>
+        <tr>
+            <td colspan="2">회원탈퇴</td>
+            <td><button type="button" id="memberOut" onclick="memberOut_alert()">회원탈퇴</button></td>     <!-- script 만들어 넣었다 -->
+        </tr>
+    </table>
+</div>
+
+
+{% endblock %}

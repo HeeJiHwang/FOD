@@ -1,0 +1,40 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% block script %}
+<script type="text/javascript">
+   function qnacheckWrite() {
+      if(document.write.title.value == ""){
+         alert("제목을 입력하십시오!");
+      }else if(document.write.content.value == ""){
+         alert("내용을 입력하십시오!")
+      }else{
+         document.write.submit();
+      }
+   }
+</script>
+{% endblock %}
+{% block content %}
+<div>
+    <form action="/board/qna/qnacheckWrite/" method="post" name = "write">
+        {% csrf_token %}
+        <table>
+            <tr> 
+               <td>※  카테고리 선택  ※</td>
+               {% for c in board%}
+               <td>
+                  <input type="radio" name="cate" value="{{c.no}}" checked>
+               </td>
+               <td>{{c.name}}</td>
+               {%endfor%}
+            </tr> 
+         </table>
+        <table>
+            {{ forms.as_table }}
+        </table>
+        <div class="right" style="float: right;">
+            <input type="button" value="질문 등록" onclick="javascript:qnacheckWrite()">
+            <input type="button" value="다시 작성" onclick="document.write.reset()">
+        </div>
+    </form>    
+</div>
+{% endblock %}

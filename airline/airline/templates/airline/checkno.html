@@ -1,0 +1,64 @@
+{%extends 'airline/layout/layout.html'%}
+
+{%block content%}
+<br><br><br><br>
+<h1>운송 제한 물품</h1>
+<p>안전한 항공 여행을 위해 반입이 금지되는 물품이 있습니다.</p>
+<br><br><br><br>
+<div>
+    <li>
+        <a href="/airline/restricteditems/" tabindex="-1">항공기 반입금지 물품</a>             
+    </li>      
+    <li>               
+        <a href="/airline/no/" tabindex="0">제한적으로 기내 반입 가능한 물품</a>
+    </li>        
+    <li>                
+        <a href="/airline/checkno/" tabindex="-1">위탁 수하물 제한 물품</a>                
+    </li>
+</div>
+<br><br><br><br>
+<h2 style="color: red;">파손 또는 손상되기 쉬운 물품</h2>
+<br>
+<div>
+    <ul type="square">
+        <ol>
+            <li>도자기, 액자, 유리제품 등</li><br>
+        </ol>
+    </ul>
+</div>
+<br>
+<h2 style="color: red;">여객기로 운송 가능한 휴대용 전자기기의 보조/여분 배터리는 휴대만 가능</h2>
+<br>
+<div>
+    <ul type="square">
+        <ol>
+            <li>예) 니켈수소, 니켈카드뮴, 알카라인, 망간 등</li><br>
+        </ol>
+    </ul>
+</div>
+<br>
+<h2 style="color: red;">고가품 및 귀중품</h2>
+<br>
+<div>
+    <ul type="square">
+        <ol>
+            <li>화폐, 보석, 현금, 유가증권, 견본, 서류, 전자제품 등</li><br>
+        </ol>
+    </ul>
+</div>
+<br>
+<h2 style="color: red;">보조/여분 리튬배터리</h2>
+<br>
+<div>
+    <ul type="square">
+        <ol>
+            <li>배터리 용량이 160Wh 이하이며 단락 방지 포장된 여분/보조 배터리</li><br>
+            <li>배터리 용량이 100Wh 이하인 전자담배</li><br>
+        </ol>
+    </ul>
+</div>
+<br><br><br><br>
+
+
+
+{%endblock%}

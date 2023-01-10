@@ -1,0 +1,61 @@
+{% extends 'airline/layout/layout.html' %}
+{% block script %}
+    <script type="text/javascript">
+        function check(f){
+            const id = f.id.value;
+            const password = f.password.value;
+            if(id == ''){
+                alert("ID를 입력하십시오!");
+                f.id.focus();
+                return false;
+            }
+            if(password == ''){
+                alert("PW를 입력하십시오!");
+                f.password.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+{% endblock %}
+{%block content%}
+<div align="center">
+    <form action = '/login/admin_checkLogin/' method="post" name="login" onsubmit="return check(this);">
+        {% csrf_token %}
+        <table align="center">
+            <caption style="font-size: 1.5em; font-weight: bolder;">관리자 로그인<br><br></caption>
+            <tr>
+                <th>ID</th>
+                <td>
+                    {% if id == None %}
+                        <input type="text" name="id">
+                    {% else %}
+                        <input type="text" name="id" value="{{id}}">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>PW</th>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    <span style="float: left; font-size: 0.7em; font-weight: bold; margin-top: 5px;">
+                        {% if check %}
+                            <input type="checkbox" name="ckid" value="true" checked>아이디 기억하기
+                        {% else %}
+                            <input type="checkbox" name="ckid" value="true">아이디 기억하기
+                        {% endif %}
+                    </span>
+                    <input type="submit" value="Login">
+                    <input type="button" value="Back" onclick="history.back()">
+                </td>
+            </tr>
+        
+        </table>
+        <div>
+        </div>
+    </form>
+</div>
+{% endblock %}

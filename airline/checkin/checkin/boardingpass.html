@@ -1,0 +1,109 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href ="{% static '/checkin/css/style.css' %}">
+{% endblock %}
+
+
+{%block content%}
+
+<div class="boardingPass">
+	<header class="boardingPass-header">
+		<h1 class="boardingPass-airline">Airline</h1>
+	</header>
+	
+	<main class="boardingPass-main">
+		<div class="row">
+			<section class="boardingPass-departur col-xs">
+				<span class="section-label">{{reservation.f_no.route_no.departure.name}}</span>
+				<span class="boardingPass-departur-IATA">{{reservation.f_no.route_no.departure.code}}</span>	
+			</section>
+
+			<section class="boardingPass-icon col-xs">
+				<img src="{% static '/checkin/images/airplane.png' %}" alt="체크인_비행기_아이콘">
+			</section>
+
+			<section class="boardingPass-arrival col-xs">
+				<span class="section-label">{{reservation.f_no.route_no.arrival.name}}</span>
+				<span class="boardingPass-arrival-IATA">{{reservation.f_no.route_no.arrival.code}}</span>	
+			</section>
+		</div>
+		
+		<hr class="hr--invisible" />
+	
+		<div class="row">
+			
+			<section class="boardingPass-date col-xs">
+				<span class="section-label">Date</span>
+				<span>{{reservation.f_no.departure_date}}</span>		
+			</section>
+
+			<section class="boardingPass-departurTime col-xs">
+				<span class="section-label">Departure</span>
+				<span>{{reservation.f_no.departure_time}}</span>	
+			</section>
+
+			<section class="boardingPass-arrivalTime col-xs">
+				<span class="section-label">Arrival</span>
+				<span>{{reservation.f_no.arrival_time}}</span>	
+			</section>
+		</div>
+		
+		<hr />
+		
+		<div class="row">
+			<section class="boardingPass-icon col-xs">
+				<i class="material-icons">flight_takeoff</i>	
+			</section>
+			
+			<section class="boardingPass-flight col-xs">
+				<span class="section-label">Flight</span>
+				<span>EZY147</span>		
+			</section>
+
+			<section class="boardingPass-terminal col-xs">
+				<span class="section-label">Required Time</span>
+				<span>{{difftime}}</span>		
+			</section>
+
+			<section class="boardingPass-gate col-xs">
+				<span class="section-label">Gate</span>
+				<span>{{reservation.f_no.gate_number}}</span>	
+			</section>
+		</div>
+		
+		<hr />
+		
+		<div class="row">
+			<section class="boardingPass-icon col-xs">
+				<i class="material-icons">account_circle</i>
+			</section>
+
+			<section class="boardingPass-passenger col-xs">
+				<span class="section-label">Passenger</span>
+				<span>{{member.last_name}}&nbsp;{{member.first_name}}</span>	
+			</section>
+
+			<section class="boardingPass-class col-xs">
+				<span class="section-label">SKYPASS no</span>
+				<span>{{member.no}}</span>	
+			</section>
+
+			<section class="boardingPass-seat col-xs">
+				<span class="section-label">Seat</span>
+				<span>{{passenger.seat}}</span>	
+			</section>
+
+		</div>
+	</main>
+		
+	<footer class="boardingPass-footer">
+		<div class="row">
+			<div class="boardingPass-qrCode col-xs"></div>
+		</div>
+	</footer>
+</div>
+
+{%endblock%}

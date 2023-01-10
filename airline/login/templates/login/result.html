@@ -1,0 +1,12 @@
+{% extends 'airline/layout/layout.html' %}
+
+{%block content%}
+<div style="display: flex; justify-content: center;">
+    
+    <script type="text/javascript">
+        alert('{{msg}}');
+        location.href = '{{ url }}'
+    </script>    
+    <a href="/">홈으로 가기</a>
+</div>
+{% endblock %}

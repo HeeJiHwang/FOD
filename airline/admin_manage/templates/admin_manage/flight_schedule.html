@@ -1,0 +1,12 @@
+{% extends 'admin_manage/layout/layout.html' %}
+
+{%block content%}
+
+{%for f in flight%}
+
+{{f.no}}/{{f.at_no}}/{{f.route_no}}/{{f.departure_date}}/{{f.no}}/{{f.no}}
+/{{f.no}}/{{f.no}}/
+
+{%endfor%}
+
+{% endblock %}

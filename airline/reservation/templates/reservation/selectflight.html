@@ -1,0 +1,96 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href ="{% static '/reservation/css/style.css' %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/reservation/script/selecflight.js' %}"></script>
+
+{% endblock %}
+
+{% block content%}
+
+    {% load user_template %}
+
+    <div id="selectflight_div">
+        <form action="/reservation/selectflight2/" name="frm" method="POST" onsubmit="return send_info()">
+            <!-- 오류 메시지(msg) -->
+            {% csrf_token %}
+            <input type="hidden" name="m_point" value="{{ m_point }}">
+            <!-- hidden으로 넘길 데이터 -->
+            <input type="hidden" name="goDate" value="{{ goDate }}">
+            <input type="hidden" name="comeDate" value="{{ comeDate }}">
+            <input type="hidden" name="re_type" value="{{ re_type }}">
+            <input type="hidden" name="way_type" value="{{ way_type }}">
+            <table id="reservation_t">
+                <tr>
+                    <td class="travle_font1">
+                        {{depart_code.code}}
+                        <img src="{% static 'reservation/images/airplane.png' %}" alert="비행기 아이콘">
+                        {{arri_code.code}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="travle_font2">
+                        가는편 {{depart_code.code}}  {{depart_code.name}} ->  {{arri_code.code}}   {{arri_code.name}}
+                    </td>
+                </tr>
+                <input type="hidden" name="depart_no" value="{{depart_code.no}}">
+                <input type="hidden" name="arri_no" value="{{arri_code.no}}">
+            </table>
+                
+            <ul id="reservations_l">
+                {% for i in schedule %}
+                <li class="travle_font3">
+                    <div>
+                        {{i.at_no.no}} / {{i.at_no.name}}
+                    </div>
+                    <div>
+                        가는 날: {{ goDate }}
+                    </div>
+                    <div>
+                        {{i.departure_time}} → {{i.arrival_time}}
+                    </div>
+
+                    <!-- 예매와 마일리지 예매 구분해서 띄우기 -->
+                    {% if re_type == "예매" %}
+                        <div class="select-decoration">
+                            <input type="radio" name="amount" value="{{ i.no }}_{{ i.route_no.amount|i_int|special_price:i.departure_time }}_1">
+                            특가 : {{ i.route_no.amount|i_int|special_price:i.departure_time }}
+                        </div>
+                        <div class="select-decoration">
+                            <input type="radio" name="amount" value="{{ i.no }}_{{ i.route_no.amount|i_int|discount_price:i.departure_time }}_2">
+                            할인 : {{ i.route_no.amount|i_int|discount_price:i.departure_time }}
+                        </div>
+                        <div class="select-decoration">
+                            <input type="radio" name="amount" value="{{ i.no }}_{{i.route_no.amount}}_3">
+                            정상운임 : {{i.route_no.amount}}
+                        </div>
+
+                    {% elif re_type == "마일리지예매" %}
+                        <div class="select-decoration">
+                            <input type="radio" name="mileage" value="{{ i.no }}_{{i.route_no.mileage}}_3">
+                            정상운임 : {{i.route_no.mileage}}
+                        </div>
+                    {% endif %}
+                    <div>
+                        잔여 좌석 : {{i.remain_seats}}
+                    </div>
+                {% empty %}
+                    데이터 없습니다.
+                </li>
+                {%endfor%}
+            </ul>
+            <div class="clear"></div>
+            <input id="no" type="hidden" name="no" value="1">
+            <input id="money" type="hidden" name="money" value="2">
+            <input id="type" type="hidden" name="type" value="3">
+            <div>
+                <input type="submit" value="다음여정" class="custom-btn btn-3">
+            </div>
+        </form>
+    </div>
+{% endblock %}

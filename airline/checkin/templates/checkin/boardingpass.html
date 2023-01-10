@@ -1,0 +1,129 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href ="{% static '/checkin/css/boardingpass.css' %}">
+{% endblock %}
+
+
+{%block content%}
+
+<div class="boardingPass">
+	<header class="boardingPass-header">
+		<h1 class="boardingPass-airline">Airline</h1>
+	</header>
+	
+	<main class="boardingPass-main">
+		<div class="row">
+			<section class="boardingPass-departur col-xs">
+				<span class="section-label" style="float:left">{{reservation.f_no.route_no.departure.name}}</span>
+				<span class="boardingPass-departur-IATA"style="float:left">{{reservation.f_no.route_no.departure.code}}</span>&nbsp;
+				<img src="{% static '/checkin/images/airplane.png' %}" alt="체크인_비행기_아이콘"  style="float:center">&nbsp;
+				<span class="boardingPass-arrival-IATA" style="float:right">{{reservation.f_no.route_no.arrival.code}}</span>
+				<span class="section-label" style="float:right">{{reservation.f_no.route_no.arrival.name}}</span>
+			</section>
+		</div>
+		
+		<hr class="hr--invisible" />
+		<div>
+		<table>
+			<tr>
+				<td>
+					<section class="boardingPass-icon col-xs">
+					<img src="{% static '/checkin/images/1.png' %}" alt="1" style="height: 40px; padding-left: 30px;">	
+					</section>
+				</td>
+				<td style="padding-left: 73px;">
+					<section class="boardingPass-date col-xs">
+						<span class="section-label">Date</span>&nbsp;&nbsp;&nbsp;
+						<span>{{reservation.f_no.departure_date}}</span>		
+					</section><br>
+
+					<section class="boardingPass-departurTime col-xs">
+						<span class="section-label">Departure</span>&nbsp;&nbsp;&nbsp;
+						<span>{{reservation.f_no.departure_time}}</span>	
+					</section><br>
+
+					<section class="boardingPass-arrivalTime col-xs">
+						<span class="section-label">Arrival</span>&nbsp;&nbsp;&nbsp;
+						<span>{{reservation.f_no.arrival_time}}</span>	
+					</section>
+				</td>
+			</tr>
+		</table>
+	</div>
+		
+		<hr>
+	<div>
+		<table>
+			<tr>
+				<td>
+					<section class="boardingPass-icon col-xs">
+						<img src="{% static '/checkin/images/2.png' %}" alt="2" style="height: 40px; padding-left: 30px;">	
+					</section>
+				</td>
+				<td style="padding-left: 68px;">
+					<section class="boardingPass-flight col-xs">
+						<span class="section-label">Flight no</span>&nbsp;&nbsp;&nbsp;
+						<span>{{reservation.flight_no}}</span>		
+					</section><br>
+
+					<section class="boardingPass-terminal col-xs">
+						<span class="section-label">SEAT</span>&nbsp;&nbsp;&nbsp;
+						<span>{{passenger.seat}}</span>		
+					</section><br>
+
+					<section class="boardingPass-gate col-xs">
+						<span class="section-label">Gate</span>&nbsp;&nbsp;&nbsp;
+						<span>{{reservation.f_no.gate_number}}</span>	
+					</section>
+				</td>
+			</tr>
+		</table>
+	</div>
+		<hr />
+		
+	<div>
+		<table>
+			<tr>
+				<td>
+					<section class="boardingPass-icon col-xs">
+					<img src="{% static '/checkin/images/3.png' %}" alt="3" style="height: 40px; padding-left: 30px;">
+					</section>
+				</td>
+				<td style="padding-left: 72px;">
+					<section class="boardingPass-passenger col-xs">
+						<span class="section-label">Passenger</span>&nbsp;&nbsp;&nbsp;
+						<span>{{member.last_name}}&nbsp;{{member.first_name}}</span>	
+					</section><br>
+
+					<section class="boardingPass-class col-xs">
+						<span class="section-label">SKYPASS no</span>&nbsp;&nbsp;&nbsp;
+						<span>{{member.no}}</span>	
+					</section><br>
+
+					<section class="boardingPass-seat col-xs">
+						<span class="section-label">Gender</span>&nbsp;&nbsp;&nbsp;
+						<span>
+							{% if member.gender == 1 %}
+								WOMEN
+							{% else %}
+								MEN
+							{% endif %}</span>	
+					</section>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	</main>
+		
+	<footer class="boardingPass-footer">
+		<div class="row">
+			<div class="boardingPass-qrCode col-xs"></div>
+		</div>
+	</footer>
+</div>
+
+{%endblock%}

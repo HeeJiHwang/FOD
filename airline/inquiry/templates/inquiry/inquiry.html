@@ -1,0 +1,95 @@
+{% extends 'airline/layout/layout.html' %}
+
+<!-- 로그인을 하지 않았을 경우 로그인 페이지로 강제이동-->
+{% block script %}
+
+{% if check %}
+<script type="text/javascript">
+    alert('{{msg}}');
+    location.href = '{{ url }}'
+</script>    
+{% endif %}
+
+{% endblock %}
+
+
+{% block style %}
+<style>
+    #btn{
+        margin-right: -4px;
+        margin-left:-3px;
+        border: 2px solid;
+        background-color: #6495ed;
+        color:#f9f8fd;
+        padding: 10px;
+        border-radius: 5px;
+        width: 100px;
+    }
+    #btn button:hover{
+        color:#6495ed;
+        background-color : #f9f8fd;
+    }
+
+    .font, td, th{
+        font-size: 1.2em;
+    }
+
+    .gray{
+        color:#585858;
+    }
+
+</style>
+{% endblock %}
+
+
+
+
+<!-- <input type ="hidden" name ="login" value ="{{id}}" id="id"> -->
+
+{% block content %}
+
+<div style="margin-left: 50px">
+    <br><br><br><br>
+    <h2 class="gray"><b><font size="6">예약 목록</font></b></h2>
+    <br>
+</div>
+
+{% if su != 0 %}
+<div>
+    <hr>
+    {% for i in no %}
+    <form action = "/inquiry/detail/" method="get" name = "reser">
+    <table width="1400px" style="margin-left: 100px">
+        <tr>
+            <th style="color:#585858">예약 번호</th>
+            <td>{{i.re_no}}</td>
+            <td rowspan="4"><input style="width: 30px;"  type ="radio" name = "re_idx" value="{{i.idx}}" checked></td>
+        </tr>
+        <tr>
+            <th style="color:#585858">출발 날짜</th>
+            <td>{{i.f_no.departure_date}}</td>
+        </tr>
+        <tr>
+            <th style="color:#585858">출발 시간</th>
+            <td>{{i.f_no.departure_time}}</td>
+        </tr>
+        <tr>
+            <th style="color:#585858">여정</th>
+            <td>{{i.f_no.route_no.departure.name}}
+                {{i.f_no.route_no.departure.code}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30">
+                {{i.f_no.route_no.arrival.name}}
+                {{i.f_no.route_no.arrival.code}}</td>
+        </tr>
+    </table><hr>      
+    {% endfor %}
+        <input type="submit"  value = "조회" id="btn" style="margin-left: 1500px; font-size: 1.2em;" >
+    </form>
+{% else %}
+    <img src="/static/images/warning1.png" alt="warning img" style="width:50px;height:50px;margin-left: 80px;"><br><br>
+    조회가능한 예약내역이 없습니다
+{% endif %}
+</div>
+
+{% endblock %}
+

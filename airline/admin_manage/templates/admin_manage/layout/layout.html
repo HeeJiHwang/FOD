@@ -1,0 +1,101 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href ="{% static 'admin_manage/css/style.css' %}">
+    {% block style %}{% endblock %}
+    {% block script %}
+    <script>
+        function gomain(){
+            alert('로그인한 관리자 계정이 없습니다.')
+            alert('로그인페이지로 넘어갑니다.')
+        }
+    </script>
+    {% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div id="main">
+        {%if request.session.admin%}
+        <font id="head"><a href="/admin_manage/">관리자 페이지</a></font>        
+        {%else%}
+        <font id="head"><a href="/login/admin_loginForm/" onclick="gomain()">관리자 페이지</a></font>
+        {%endif%}
+        {% if request.session.admin != None %}
+            <a href="/login/logout/">Logout</a> 
+            <!-- <a href="/login/logout/">마이페이지</a>  -->
+        {% else %}
+            <a href="/login/admin_loginForm/">Login</a> 
+        {% endif %}
+    </div>
+    {% if request.session.admin == 6 %}
+    직원 관리<br><hr>
+    <ul>
+        <li>
+            <a href = "/admin_manage/list_admin/">직원 목록 </a>
+        </li>
+        <li>
+            <a href = "/admin_manage/create_admin/">직원 계정 생성</a>
+        </li>
+    </ul>
+    {%endif%}
+
+    {% if request.session.admin == 1 %}
+
+    공지사항 및 QnA관리<br><hr>
+    <ul>
+        <li>
+            <a href="/admin_manage/inform/inform/">공지사항 관리</a>
+        </li>
+        <li>
+            <a href="/admin_manage/qna/qna/">QnA관리</a>
+        </li>
+    </ul>
+    {%endif%}
+
+    {% if request.session.admin == 2 %}
+    항공스케쥴 관리<br><hr>
+    <ul>
+        <li>
+            <a href="/admin_manage/flight_schedule/">전체 항공 스케쥴 보기</a>
+        </li>
+        <li>
+            <a href="/admin_manage/create_schedule/">항공 스케쥴 생성</a>
+        </li>
+    </ul>
+    {%endif%}
+
+    {% if request.session.admin == 3 %}
+    고객관리<br><hr>
+    <ul>
+        <li>
+            회원 목록
+        </li>
+    </ul>
+    {%endif%}
+
+    {% if request.session.admin == 4 %}
+    탑승객/체크인 관리<br><hr>
+    <ul>
+        <li>
+            <a href="/admin_manage/list_passenger/" >탑승객 및 체크인 관리</a>
+        </li>
+    </ul>
+    {%endif%}
+
+    {% if request.session.admin == 5 %}
+    가격관리<br><hr>
+    <ul>
+        <li>
+            가격관리 및 수정
+        </li>
+    </ul>
+    {%endif%}
+
+    {%block content%}
+    {%endblock%}
+</body>
+</html>

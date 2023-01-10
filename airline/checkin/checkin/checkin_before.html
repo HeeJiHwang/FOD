@@ -1,0 +1,46 @@
+{% extends 'airline/layout/layout.html' %}
+
+
+{% block content %}
+<div>
+    <h2>체크인할 예약을 고르십시오</h2>
+</div> <br>
+
+<div>
+{% if su != 0 %}
+    {% for i in no %}
+    <table>
+        <tr>
+            <th>예약번호    
+            <td>{{i.re_no}}
+        </tr>
+        <tr>
+            <th>출발 날짜
+            <td>{{i.f_no.departure_date}}
+        </tr>
+        <tr>
+            <th>출발 시간
+            <td>{{i.f_no.departure_time}}
+        </tr>
+        <tr>
+            <th>여정
+            <td>{{i.f_no.route_no.departure.name}}
+                {{i.f_no.route_no.departure.code}}
+                <img src="/static/images/gogo.png" alt="airplane img">
+                {{i.f_no.route_no.arrival.name}}
+                {{i.f_no.route_no.arrival.code}}
+        </tr>
+    </table> 
+    <form action = "/checkin/checkin/" method="get" name = "reser">
+        <input type ="radio" name = "idx" value="{{i.idx}}"> 
+        <hr>   
+    {% endfor %}
+        <input type="submit"  value = "체크인 하기">
+    </form>
+</div>
+{% endif %}
+
+
+{% endblock %}
+
+

@@ -1,0 +1,312 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="chrom">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href ="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'script/searchAir.js' %}"></script>
+
+    <link rel="stylesheet" href ="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    {% block style %}{% endblock %}
+    {% block script %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header class="header">
+        <a href="/"  class="logo"><img src="/static/images/logo.png/" style="width: 100px;"></a>
+        <nav>
+            <ul class="menu-items">
+                <li><a href="#" class="menu-item">항공권</a>
+                    <div class="mega-menu">
+                        <div class="content">
+                            <div class="col">
+                                <section>
+                                    <h2>항공권 정보</h2>
+                                    <a href="#" class="img-wrapper"><span class="img"><img src="/static/images/Airline_Ticket.jpg" alt="항공권 사진"></span></a>
+                                    <p>
+                                        <loren5></loren5>
+                                    </p>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <h2>서비스 준비중</h2>
+                                    <ul class="mega-links">
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                    </ul>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <h2>서비스 준비중</h2>
+                                    <ul class="mega-links">
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                    </ul>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <h2>빠른 메뉴</h2>
+                                    <ul class="mega-links">
+                                        <li><a href="#">항공권 예매</a></li>
+                                        <li><a href="#">예약 조회</a></li>
+                                        <li><a href="#">체크인</a></li>
+                                        <li><a href="#">항공편 현황</a></li>
+                                        
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+
+
+                <li><a href="#" class="menu-item">수하물</a>
+                    <div class="mega-menu">
+                        <div class="content">
+                            <div class="col">
+                                <section>
+                                    <h2>수하물 정보</h2>
+                                    <a href="#" class="img-wrapper"><span class="img"><img src="/static/images/baggage2.jpg" alt="수하물 사진"></span></a>
+                                    <p>
+                                        <loren5></loren5>
+                                    </p>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <h2>수하물 </h2>
+                                    <ul class="mega-links">
+                                        <li><a href="/airline/baggage/">수하물 안내</a></li>
+                                    </ul>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <h2>수하물 필독 사항</h2>
+                                    <ul class="mega-links">
+                                        <li><a href="/airline/restricteditems/">운송 제한 물품</a></li>
+                                        <li><a href="/airline/carryon/">휴대 수하물</a></li>
+                                        <li><a href="/airline/damagedorlost/">지연, 파손 및 유실물</a></li>
+                                    </ul>
+                                </section>
+                            </div>
+  
+                            <div class="col">
+                                <section>
+                                    <h2>빠른 메뉴</h2>
+                                    <ul class="mega-links">
+                                        <li><a href="#">항공권 예매</a></li>
+                                        <li><a href="#">예약 조회</a></li>
+                                        <li><a href="#">체크인</a></li>
+                                        <li><a href="#">항공편 현황</a></li>
+                                        
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li><a href="#" class="menu-item">항공기 안내</a>
+                    <div class="mega-menu">
+                        <div class="content">
+                            <div class="col">
+                                <section>
+                                    <h2>항공기 안내</h2>
+                                    <a href="#" class="img-wrapper"><span class="img"><img src="/static/images/boeing737.jpg" alt="Boeing 737"></span></a>
+                                    <p>
+                                        <loren5></loren5>
+                                    </p>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <h2>비행기 종류</h2>
+                                    <ul class="mega-links">
+                                        <li><a href="/airline/aircraft737/">BOEING 737</a></li>
+                                        <li><a href="/airline/aircraft747/">BOEING 747</a></li>
+                                        <li><a href="/airline/aircraft777/">BOEING 777</a></li>
+                                    </ul>
+                                </section>
+                            </div>
+
+
+                            <div class="col">
+                                <section>
+                                    <h2>빠른 메뉴</h2>
+                                    <ul class="mega-links">
+                                        <li><a href="#">항공권 예매</a></li>
+                                        <li><a href="#">예약 조회</a></li>
+                                        <li><a href="#">체크인</a></li>
+                                        <li><a href="#">항공편 현황</a></li>
+                                        
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+                <li><a href="#" class="menu-item">고객지원</a>
+                    <div class="mega-menu">
+                        <div class="content">
+                            <div class="col">
+                                <section>
+                                    <h2>고객지원 정보</h2>
+                                    <a href="#" class="img-wrapper"><span class="img"><img src="/static/images/airport_service.jpg" alt="고객지원 사진"></span></a>
+                                    <p>
+                                        <loren5></loren5>
+                                    </p>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <a href="/board/list/">공지사항</a>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <a href="/board/qnalist/">QnA</a>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <h2>빠른 메뉴</h2>
+                                    <ul class="mega-links">
+                                        <li><a href="#">항공권 예매</a></li>
+                                        <li><a href="#">예약 조회</a></li>
+                                        <li><a href="#">체크인</a></li>
+                                        <li><a href="#">항공편 현황</a></li>
+                                        
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+                <li>
+                    <a href="/reservation/" class="menu-item">빠른 예매</a>
+                    
+                </li>
+                <div>
+                    {% if request.session.login != None or request.session.admin != None %}
+                    <a href="/login/logout/"><button class="button-33" role="button">로그아웃</button></a> 
+                    <a href="/login/my/"><button class="button-33" role="button">마이페이지</button></a> 
+                    {% else %}                    
+                    <a href="/login/loginForm/"><button class="button-33 " role="button">로그인</button></a> 
+                    <a href="/join/joinForm/"><button class="button-33" role="button">회원가입</button></a> 
+                    {% endif %}
+                </div>
+                
+            </ul>
+            
+        </nav>
+    </header>
+    
+    
+
+    <div class="clear"></div>
+
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+
+    <!-- </div> -->
+        <div class="clear"></div>
+
+        <footer class="footer">
+            <div class="footer_container">
+                <div class="row">
+                    <div class="footer-col">
+                        <h4>회사소개</h4>
+                        <ul>
+                            <li><a href="#"></a>난다요 항공에 대하여</li>
+                            <li><a href="#"></a>기업지배구조</li>
+                            <li><a href="#"></a>투자정보</li>
+                            <li><a href="#"></a>지속가능경영</li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>고객지원</h4>
+                        <ul>
+                            <li><a href="/board/list/">공지사항</a></li>
+                            <li><a href="/board/qnalist/">자주 묻는 질문</a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>약관 및 규정</h4>
+                        <ul>
+                            <li><a href="#"></a>개인정보 처리방침</li>
+                            <li><a href="#"></a>이용약관</li>
+                            <li><a href="#"></a>운송약관 및 고지사항</li>
+                            <li><a href="#"></a>소비자 안전 관련 정보</li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>기타안내</h4>
+                        <ul>
+                            <li><a href="#"></a>고객 안내 서비스</li>
+                            <li><a href="#"></a>항공교통이용자 서비스 계획</li>
+                            <li><a href="#"></a>항공교통이용자 피해 구제</li>
+                            <li><a href="#"></a>관련 사이트</li>
+                        </ul>
+                    </div>
+                    <!-- <div class="footer-col">
+                        <h4>SNS</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </footer>
+
+       
+</body>
+</html>

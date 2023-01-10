@@ -1,0 +1,22 @@
+{% extends 'airline/layout/layout.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href ="{% static '/reservation/css/style.css' %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/reservation/script/selecflight.js' %}"></script>
+
+{% endblock %}
+
+{% block content%}
+<div style="display: flex; justify-content: center;">
+    
+    <script type="text/javascript">
+        alert('{{msg}}');
+        location.href = '{{ url }}'
+    </script>    
+    <a href="/">홈으로 가기</a>
+</div>
+{% endblock%}

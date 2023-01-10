@@ -1,0 +1,151 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% load static %}
+
+
+{% block script %}
+    <script src="{% static '/script/iq_detail.js' %}"></script>  
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'inquiry/css/style.css' %}"></link>
+
+<style>
+    #btn{
+        margin-right: -4px;
+        margin-left:-3px;
+        border: 2px solid;
+        background-color: #6495ed;
+        color:#f9f8fd;
+        padding: 10px;
+        border-radius: 5px;
+        width: 100px;
+    }
+    #btn button:hover{
+        color:#6495ed;
+        background-color : #f9f8fd;
+    }
+
+    .font, td, th{
+        font-size: 1em;
+    }
+
+    .gray{
+        color:#585858;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div style="margin-left: 50px">
+    <br><br><br><br><br>
+    <h2><b><font size="6">예약 내역</font></b></h2>
+</div> 
+<br><br>
+<hr>
+<br>
+
+<div id="wrapper" >
+    <table id="keywords" style="width: 1800px;">
+        <thead>
+        <tr style="text-align: center; padding-top: 200px;" >
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold;">여정</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold; padding-right: 83px;">출도착시간</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold;">비행기</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold;">좌석</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold; ">체크인여부</td>
+            {% if passenger.check_in != 0 %}
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold; width:300px; ">추가기능</td>
+            {% endif %}    
+        </tr>
+        </thead>
+        <tr>
+            <td style="padding-top: 40px">{{reservation.f_no.route_no.departure.name}} {{reservation.f_no.route_no.departure.code}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30"> 
+                {{reservation.f_no.route_no.arrival.name}} {{reservation.f_no.route_no.arrival.code}}
+                <br><br>
+                {{reservation.f_no.departure_date}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30">
+                {{reservation.f_no.arrival_date}}
+            </td>
+
+            <td style="padding-right: 70px; padding-top: 30px;">
+                {{reservation.f_no.departure_time}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30">
+                {{reservation.f_no.arrival_time}}
+            </td>
+
+            <td>
+                <!--KE101일때, B737-800(aircraft737)링크 , KE102일때, A380(aircraft777)링크 -->
+                {% if reservation.f_no.at_no.no == 'KE101' %}
+                    <a href="/airline/aircraft737/" style="text-decoration: underline;">
+                        B737-800   
+                    </a>
+                {% else %}
+                    <a href="airline/aircraft777/" style="text-decoration: underline;">
+                        A380   
+                    </a>
+                {% endif %}    
+            </td>
+
+            <td style="padding-top: 40px; padding-left: 20px; padding-right: 20px;">
+                <form action="/seats/seat/" method="get" name = "seat">
+                    {% if passenger.seat == None %}
+                        좌석을 지정하지 않았습니다.<br><br>
+                        <input type="hidden" name="re_idx" value="{{idx}}">                   
+                        <input type="submit" value ="좌석지정" id="btn"> 
+                    {% else %}
+                        {{passenger.seat}}<br><br>
+                        {% if passenger.check_in == 0 %}                                   
+                            <input type="hidden" name="re_idx" value="{{idx}}"> 
+                            <input type="submit" value ="좌석수정" id="btn">
+                        {% endif %}
+                    {% endif %}
+                </form>
+            </td>
+
+            <td style="padding-top: 40px; font-size: 2em;">
+                {% if passenger.check_in != 0 %}
+                    <br>
+                    O
+                {% else %}
+                    X <br>
+                    <a href="/checkin/">
+                        <input type="button" value="체크인하러가기" id="btn" style="font-size:17px; width:150px; height:45px; ">
+                    </a>
+                    {% endif %}
+            </td>
+            <td>
+                 <!-- 체크인 되어있을때만 항공권/좌석변경 보이기-->
+                <div align="center">
+                    {% if passenger.check_in != 0 %}
+                    <form action = "/checkin/boardingpass/" method="get" name = "reser2">
+                        <input type ="hidden" name = "re_idx" value="{{idx}}">
+                        <input type="submit"  value = "항공권 보기" id="btn" style="width:150px; margin-bottom: 10px;">
+                    </form>
+                    <form action="/seats/seat/" method="get" name = "seat">
+                        <input type ="hidden" name = "re_idx" value="{{idx}}">
+                        <input type="submit" value ="좌석 변경" id="btn" style="width:150px; margin-top: 10px;">
+                    </form>
+                    {% endif %}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<hr>
+<div>
+
+    <button align="right" onclick="run_reservation_cancel()" id="cancel_btn" name="re_idx" value="{{idx}}" style="width:140px; float:right; background-color: lightcoral;">예약 취소/환불</button>
+
+</div>
+    
+
+{% endblock %}
+
+
+
+
+

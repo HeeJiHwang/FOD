@@ -1,0 +1,85 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% block script %}
+    <script type="text/javascript">
+        function check(f){
+            const id = f.id.value;
+            const password = f.password.value;
+            if(id == ''){
+                alert("ID를 입력하십시오!");
+                f.id.focus();
+                return false;
+            }
+            if(password == ''){
+                alert("PW를 입력하십시오!");
+                f.password.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+{% endblock %}
+{%block content%}
+
+
+<body id="loginpage">
+    <div class="login-container">
+
+        <form action='/login/checkLogin/' method="post" name="login" onsubmit="return check(this);">
+            {% csrf_token %}
+            <h3>로그인</h3>
+
+            <div class="inputBox">
+                <label id="login-label" for="id">아이디:</label>
+                <div class="Box">
+                    <div class="icon">
+                        <i class="fa-solid fa-circle-user"></i>
+                    </div>
+                    {% if id == None %}
+                    <input type="text" name="id">
+                    {% else %}
+                    <input type="text" name="id" value="{{id}}">
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="inputBox">
+                <label id="login-label" for="password">비밀번호:</label>
+                <div class="Box">
+                    <div class="icon">
+                        <i class="fa-solid fa-unlock-keyhole"></i>
+                    </div>
+                    <input type="password" name="password">
+                </div>
+            </div>
+
+            <label id="login-label">
+                {% if check %}
+                <input type="checkbox" name="ckid" value="true" id="" checked>
+                {% else %}
+                <input type="checkbox" name="ckid" value="true">
+                {% endif %}
+                아이디 기억하기
+            </label><br>
+
+            <button id="login-button" class="submit" value="login">로그인 </button>
+            <div text_align = "right">
+                <a href="/login/admin_loginForm/" style="margin:70px"> 관리자 로그인</a>
+            </div>
+            <a href="" class="forgot">
+                아이디 찾기
+            </a>
+            <a href="" class="forgot">
+                비밀번호 찾기
+            </a>
+            
+        </form>
+    </div>
+    
+    
+</body>
+
+
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'admin_manage/layout/layout.html' %}
+
+{%block script%}
+<script type="text/javascript">
+	function checkJoin(){
+        if(document.join.name.value==""){
+            alert("이름을 입력하십시오!")
+            return false
+        }else if(document.join.id.value == ""){
+			alert("아이디를 입력하십시오!");
+            return false
+		}else if(document.join.pw.value == ""){
+			alert("비밀번호를 입력하십시오!");
+            return false
+		}else if(document.join.repw.value == ""){
+			alert("비밀번호확인을 입력하십시오!");
+            return false
+        }else if(document.join.email.value == ""){
+            alert("이메일을 입력하십시오!");
+            return false
+        }else if(document.join.department.value == ""){
+            alert("부서를 선택하십시오!");
+            return false
+        }else{
+            return true
+        }
+    }
+</script>
+{% endblock%}
+
+{%block content%}
+직원 계정 생성 페이지ㅣ양<br><br>
+
+
+<div>
+    <form action="/admin_manage/admin_result/" method="post" name = "join" onsubmit="return checkJoin()">
+        {% csrf_token %}
+        <table>
+            <caption style="font-size: 1.5em; font-weight: bolder;">직원 계정 생성<br><br></caption>
+            <tr>
+                <td>이름</td>
+                <td><input type="text" name = "name"></td>
+            </tr>
+
+            <tr>
+                <td>아이디(ID)</td>
+                <td><input type="text" name = "id"></td>
+            </tr>
+            <tr>
+                <td>PW</td>
+                <td><input type="password" name = "pw"></td>
+            </tr>
+            <tr>
+                <td>rePW</td>
+                <td><input type="password" name = "repw"></td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td><input type="text" name = "email"></td>
+            </tr>
+
+            <tr>
+                <td>부서명</td>
+                <td>
+                    <select name="department">
+                        <option value="" selected>-- 선택 --</option>
+                        <option value="1">공지사항/QnA관리</option>
+                        <option value="2">항공 스케쥴 관리</option>
+                        <option value="3">고객 관리</option>
+                        <option value="4">탑승객/체크인 관리</option>
+                        <option value="5">가격관리</option>
+                        <option value="6">직원 관리</option>
+                    </select>
+                </td>
+                
+            <tr>
+                <td colspan="2" align="right">
+                    <input type="submit" value="Join">
+                    <input type="button" value="Reset" onclick="document.join.reset()">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{%endblock%}

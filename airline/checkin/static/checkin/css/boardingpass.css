@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+
+.html {
+	min-height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: #444;
+	background: linear-gradient(60deg,
+		darken(#25293c, 10%),
+		lighten(#25293c, 10%)
+	);
+}
+
+.body {
+	line-height: 1.5;
+}
+
+hr {
+	width: 100%;
+	margin: 1.5em 0;
+	border: 0;
+	border-bottom: 1px dashed #ccc;
+}
+
+.hr--invisible {
+	border-bottom-color: transparent;
+}
+
+/* Boarding Pass */
+.boardingPass {
+	margin: 1.5em 30em;
+	width: 400px;
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, .3);
+	border-radius: 4px;
+}
+
+/* Section */
+/** Label **/
+.section-label {
+	display: inline;
+	text-transform: uppercase;
+	font-size: .9rem;
+	color: lighten(#444, 30%);
+}
+
+/** Icon **/
+.boardingPass-icon {
+	width: "33px";
+	flex-grow: .1;
+	color: #93afeb;
+}
+
+/* Header */
+.boardingPass-header {
+	padding: .5em 2em;
+	/* background: linear-gradient(60deg, 
+		darken(#f03f55, 10%), 
+		lighten(#f03f55, 10%)
+	); */
+	background-color: #93afeb;
+	border-radius: inherit;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	color: rgb(255, 255, 255);
+}
+
+.boardingPass-airline {
+	margin: 0;
+	font-style: italic;
+}
+
+/* Main */
+.boardingPass-main {
+	padding: 2em; 
+	background: white;
+}
+
+.boardingPass-departur-IATA,
+.boardingPass-arrival-IATA {
+	display: inline-block;
+	line-height: 1;
+	font-size: 3em;
+}
+
+.boardingPass-transport {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.boardingPass-transport-icon {
+	transform: rotate(90deg);
+	color: lighten(#444, 30%);
+	font-size: 36px;
+}
+
+/* Footer */
+.boardingPass-footer {
+	padding: 0 2em 2em;
+	background: #fff;
+	border-radius: inherit;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+}
+
+.boardingPass-qrCode {
+	height: 40px;
+	width: 100%;
+	background: repeating-linear-gradient(to right, 
+		#222, #222 2%,
+		transparent 2%, transparent 3%,
+		#222 3%, #222 4%,
+		transparent 4%, transparent 6%,
+		#222 6%, #222 7%,
+		transparent 7%, transparent 8%,
+		#222 8%, #222 10%,
+		transparent 10%, transparent 11%
+	);
+}

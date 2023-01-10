@@ -1,0 +1,66 @@
+
+{% extends 'airline/layout/layout.html' %}
+
+{%load static%}
+
+
+
+{%block content%}
+<style>
+    .h1 {
+        margin-bottom: 0.8rem;
+        color: #000;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+    .h2{
+        width: 90%;
+        margin: 0 auto;
+        height: 200px;
+        text-align: center;
+        background-color: #eaf2ff;
+    }
+    
+    .h3{
+        padding-top: 70px;
+        font-size: 1rem;
+    }
+    
+    .h4{
+        text-align: center;
+    }
+    
+    </style>
+<br><br><br><br>
+<h2>나의 마일리지</h2>
+<br><br><br><br>
+<h1 class="h1">마일리지 현황</h1>
+<div class="h2">
+    <div class="h3">
+        {{member.last_name}}{{member.first_name}} 님의 <br>
+        마일리지 현황입니다. 
+        <div class="h4">
+            <font size="5"  style="color: blue;"><strong>마일리지</strong></font>
+        </div>
+        <div class="h4">
+            <font size="4"><strong>{{member.p_points}}마일</strong></font>
+        </div>   
+    </div>
+</div>
+<br><br>
+<div class="h2">
+    <div class="h3">
+        항공기 탑승 {{s}} 마일 추가 적립 시 등급상승
+    </div>
+    <input type="range" min="1" max="5000" value="{{p}}" disabled="disabled" style="width:90%;">
+    <div>
+        <div style="float: left; margin-left: 70px;">
+            <font size="4">0마일</font>
+        </div>
+        <div style="float: right; margin-right: 70px;">
+            <font size="4">5000마일</font>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{%extends 'airline/layout/layout.html'%}
+
+{%block content%}
+<br><br><br><br>
+<h1>운송 제한 물품</h1>
+<p>안전한 항공 여행을 위해 반입이 금지되는 물품이 있습니다.</p>
+<br><br><br><br>
+<div>
+    <li>
+        <a href="/airline/restricteditems/" tabindex="-1">항공기 반입금지 물품</a>             
+    </li>      
+    <li>               
+        <a href="/airline/no/" tabindex="0">제한적으로 기내 반입 가능한 물품</a>
+    </li>        
+    <li>                
+        <a href="/airline/checkno/" tabindex="-1">위탁 수하물 제한 물품</a>                
+    </li>
+</div>
+<br><br><br><br>
+<h2 style="color: red;">발화성/인화성 물질</h2>
+<br>
+<div>
+    <ul type="square">
+        <ol>
+            <li>휘발유, 페인트, 라이터용 연료 등 발화성/인화성 물질</li><br>
+        </ol>
+    </ul>
+</div>
+<br>
+<h2 style="color: red;">고압가스 용기</h2>
+<br>
+<div>
+    <ul type="square">
+        <ol>
+            <li>산소캔, 부탄가스캔 등 고압가스 용기</li><br>
+        </ol>
+    </ul>
+</div>
+<br>
+<h2 style="color: red;">무기 및 폭발물 종류</h2>
+<br>
+<div>
+    <ul type="square">
+        <ol>
+            <li>총기, 폭죽 등 무기 및 폭발물 종류</li><br>
+        </ol>
+    </ul>
+</div>
+<br>
+<h2 style="color: red;">기타 위험 물질</h2>
+<br>
+<div>
+    <ul type="square">
+        <ol>
+            <li>소화기, 에어로졸(살충제 등), 락스, 파마약 등 탑승객 및 항공기에 위험이 될 가능성이 있는 물질</li><br>
+        </ol>
+    </ul>
+</div>
+<br>
+<h2 style="color: red;">리튬 배터리 장착 전자기기</h2>
+<br>
+<div>
+    <ul type="square">
+        <ol>
+            <li>배터리 용량 160Wh 초과의 리튬 배터리가 장착된 전자기기</li><br>
+            <li>배터리 용량 160Wh 초과의 보조/여분의 리튬 배터리</li><br>
+            <li>리튬 배터리가 분리되지 않는 전동 휠, 스마트 가방</li><br>
+            <li>배터리 분리가 불가한 헤어컬(고데기)</li><br>
+        </ol>
+    </ul>
+</div>
+<br><br><br><br>
+
+
+
+{%endblock%}

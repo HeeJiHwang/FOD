@@ -1,0 +1,205 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% block content%}
+<!-- reservation 팝업창 -->
+<div class="slider-frame">
+    <div class="slide-images">
+        <div class="img-container">
+            <img src="/static/images/traveling.jpg" alt="Leaving Airport">
+        </div>
+        <div class="img-container">
+            <img src="/static/images/boeing777.jpg" alt="Image of Boeing Plane">
+        </div>
+        <div class="img-container">
+            <img src="/static/images/boeing.jpg" alt="Image of Boeing plane">
+        </div>
+    </div>
+</div>
+    
+    <!-- 예매부분 content -->
+    <!-- <div id="reservation">
+        <form action="/reservation/selectflight/" name="frm" method="POST" onsubmit="return prec()">     
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value="{{ user_id }}">      
+            <table>
+                <tr>
+                    <td class="select">
+                        <input type="radio" id="select" name="re_type" value="예매" checked><label for="select">예매</label>
+                    </td>
+                    <td class="select">
+                        <input type="radio" id="select2" name="re_type" value="마일리지예매"><label for="select2">마일리지 예매</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="select">
+                        <input type="radio" id="select3" name="way_type" value="왕복" onchange="select_way()" checked><label for="select3">왕복</label>
+                    </td>
+                    <td class="select">
+                        <input type="radio" id="select4" name="way_type" value="편도" onchange="select_way()"><label for="select4">편도</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>출발지</td>
+                    <td>
+                        
+                        {%for m in airport %}
+                        {{m.name}}/{{m.code}}
+                            <input type="radio" name="depart" placeholder="출발지" value="{{m.name}}">
+                        {%endfor%}
+
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>도착지</td>
+                    <td>
+                        
+                        {%for m in airport %}
+                        {{m.name}}/{{m.code}}
+                            <input type="radio" name="arri" placeholder="도착지" value="{{m.name}}">
+                        {%endfor%}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="date" name="goDate"> 가는 날
+                    </td>
+                </tr>
+                <tr class="arri">
+                    <td colspan="2">
+                        <input type="date" name="comeDate"> 오는 날
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="제출">
+                    </td>
+                </tr>
+                
+            </table>
+        </form>
+
+        </div> -->
+        <div class="clear"></div>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <div id="quicknav">
+            <button type="button" class="button_quicknav">
+                <span class="button__icon">
+                    <ion-icon name="search-outline"></ion-icon>
+                </span>
+                <a href="/inquiry/" ><span class="button__text">예약조회 </span></a>
+            </button>
+            <button type="button" class="button_quicknav">
+                <span class="button__icon">
+                    <ion-icon name="ticket-outline"></ion-icon>
+                </span>
+                <a href="/checkin/" ><span class="button__text">체크인 </span></a>
+            </button>
+            <button type="button" class="button_quicknav">
+                <span class="button__icon">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                </span>
+                <a href="#" ><span class="button__text">항공편 현황 </span></a>
+            </button>
+            <button type="button" class="button_quicknav">
+                <span class="button__icon">
+                    <ion-icon name="person-add-outline"></ion-icon>
+                </span>
+                <a href="#" ><span class="button__text">좌석 선택 </span></a>
+            </button>
+        
+        </div>
+        
+        <div id="clear">
+        
+        </div>
+        
+        <div id="reco">
+            <h2>추천여행지</h2>
+        </div>
+        
+        
+        <div class="slider-container">
+            
+            <div class="slider">
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=1" alt="">
+                </div>
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=2" alt="">
+                </div>
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=3" alt="">
+                </div>
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=4" alt="">
+                </div>
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=5" alt="">
+                </div>
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=6" alt="">
+                </div>
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=7" alt="">
+                </div>
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=8" alt="">
+                </div>
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=9" alt="">
+                </div>
+                <div class="slider-item">
+                    <img src="https://picsum.photos/400?random=10" alt="">
+                </div>
+            </div>
+        </div>
+        <script>
+        const sliderContainer = document.querySelector('.slider-container');
+        const slider = document.querySelector('.slider');
+        
+        let clicked = false;
+        let xAxis;
+        let x;
+        
+        
+        sliderContainer.addEventListener('mouseup', () => {
+            sliderContainer.style.cursor = `grab`;
+        }) 
+        sliderContainer.addEventListener('mousedown', e => {
+            clicked = true
+            xAxis = e.offsetX - slider.offsetLeft;
+            
+        
+            sliderContainer.style.cursor = `grabbing`
+        })
+        
+        window.addEventListener('mouseup', () => {
+            clicked = false
+        })
+        
+        sliderContainer.addEventListener('mousemove', (e) => {
+            if (!clicked) return;
+            e.preventDefault();
+        
+            x = e.offsetX;
+            slider.style.left = `${x - xAxis}px`;
+            
+        
+            checkSize()
+        })
+        
+        function checkSize () {
+            let sliderContainerOut = sliderContainer.getBoundingClientRect();
+            let sliderIn = slider.getBoundingClientRect();
+        
+            if (parseInt(slider.style.left) > 0) {
+                slider.style.left = `0px`;
+            } else if (sliderIn.right < sliderContainerOut.right) {
+                slider.style.left = `-${sliderIn.width - sliderContainerOut.width}px`
+            }
+        }
+        </script> 
+{%endblock%}

@@ -1,0 +1,76 @@
+{% extends 'airline/layout/layout.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href ="{% static '/reservation/css/style.css' %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/reservation/script/selecflight.js' %}"></script>
+{% endblock %}
+
+
+{%block content%}
+{% load user_template %}
+
+<div id="reservation_form">
+    <h1 class="travle_font1">항공권 예매</h1>  
+    <form action="/reservation/selectflight/" name="frm" method="POST" onsubmit="return reservation_submit()">
+        {% csrf_token %}
+        <input type="hidden" name="user_id" value="{{ user_id }}">
+        <table>
+            <tr>
+                <td class="select">
+                    <input type="radio" id="select" name="re_type" value="예매" checked><label for="select">예매</label>
+                </td>
+                <td class="select">
+                    <input type="radio" id="select2" name="re_type" value="마일리지예매"><label for="select2">마일리지 예매</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="select">
+                    <input type="radio" id="select3" name="way_type" value="왕복" onchange="select_way()" checked><label for="select3">왕복</label>
+                </td>
+                <td class="select">
+                    <input type="radio" id="select4" name="way_type" value="편도" onchange="select_way()"><label for="select4">편도</label>
+                </td>
+            </tr>
+            <tr>
+                <th>출발지</th>
+                {%for m in airport %}
+                    <td class="select-decoration de-ari">
+                        {{m.name}}/{{m.code}}
+                        <input class="de-ari" type="radio" name="depart" placeholder="출발지" value="{{m.name}}">
+                    </td>
+                {%endfor%} 
+            </tr>
+            <tr>
+                <th>도착지</th>
+                {%for m in airport %}
+                    <td class="select-decoration de-ari">
+                        {{m.name}}/{{m.code}}
+                        <input class="" type="radio" name="arri" placeholder="도착지" value="{{m.name}}">
+                    </td>
+                {%endfor%}
+            </tr>
+            <tr>
+                <td colspan="2">
+                    가는 날 <input type="date" name="goDate" value="goDate">
+                </td>
+            </tr>
+            <tr class="arri">
+                <td colspan="2">
+                    오는 날 <input type="date" name="comeDate" value="comeDate">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="다음여정" class="custom-btn btn-3">
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+
+</div>
+{%endblock%}

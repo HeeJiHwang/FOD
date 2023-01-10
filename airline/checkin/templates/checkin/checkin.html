@@ -1,0 +1,213 @@
+{% extends 'airline/layout/layout.html' %}
+
+{% load static %}
+
+{%comment%} 체크인 전에 좌석값이 지정되지않았을경우(None) 좌석지정페이지로 강제이동 {% endcomment %}
+{% block script %}
+
+<script type="text/javascript">
+    function seat_select(){
+        if(document.getElementById("seat").value == "None"){
+            alert('{{msg}}');
+            location.href = '{{ url }}'
+        }else{
+            document.reser1.submit();
+        }
+    } 
+</script>
+{% endblock %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static '/checkin/css/style.css' %}"></link>
+<style>
+    #btn{
+        margin-right: -4px;
+        margin-left:-3px;
+        border: 2px solid;
+        background-color: #6495ed;
+        color:#f9f8fd;
+        padding: 10px;
+        border-radius: 5px;
+        width: 100px;
+    }
+    #btn button:hover{
+        color:#6495ed;
+        background-color : #f9f8fd;
+    }
+
+    .font, td, th{
+        font-size: 1em;
+    }
+
+    .gray{
+        color:#585858;
+    }
+</style>
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+<input type ="hidden" name ="seat" value ="{{passenger.seat}}" id="seat">
+
+<div style="margin-left: 50px">
+    <br><br><br><br><br>
+    <h2 class="gray"><b><font size="6">체크인 가능 예약</font></b></h2>
+    <br>
+</div>
+<br><br><br><br>
+
+
+{% if passenger.check_in == 0 %}
+<div id="wrapper" >
+    <table id="keywords" style="width: 1800px;">
+        <thead>
+        <tr style="text-align: center; padding-top: 200px;" >
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold;">여정</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold; padding-right: 83px;">출도착시간</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold;">비행기</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold;">좌석</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold; width:450px">체크인</td>   
+        </tr>
+        </thead>
+        <tr>
+            <td style="padding-top: 40px">{{reservation.f_no.route_no.departure.name}} {{reservation.f_no.route_no.departure.code}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30"> 
+                {{reservation.f_no.route_no.arrival.name}} {{reservation.f_no.route_no.arrival.code}}
+                <br><br>
+                {{reservation.f_no.departure_date}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30">
+                {{reservation.f_no.arrival_date}}
+            </td>
+
+            <td style="padding-right: 70px; padding-top: 30px;">
+                {{reservation.f_no.departure_time}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30">
+                {{reservation.f_no.arrival_time}}
+            </td>
+
+            <td>
+                <!--KE101일때, B737-800(aircraft737)링크 , KE102일때, A380(aircraft777)링크 -->
+                {% if reservation.f_no.at_no.no == 'KE101' %}
+                    <a href="/airline/aircraft737/"  style="text-decoration: underline;">
+                        B737-800   
+                    </a>
+                {% else %}
+                    <a href="airline/aircraft777/" style="text-decoration: underline;">
+                        A380   
+                    </a>
+                {% endif %}
+            </td>
+
+            <td style="padding-top: 40px">
+                <form action="/seats/seat/" method="get" name = "seat">
+                    <input type="hidden" name="re_idx" value="{{idx}}">
+                    {% if passenger.seat == None %}
+                        체크인 전에 좌석지정을 완료해주세요.<br><br>                  
+                        <input type="submit" value ="좌석지정" id="btn"> 
+                    {% else %}
+                        {{passenger.seat}} <br><br>                                     
+                        <input type="submit" value ="좌석수정" id="btn">
+                    {% endif %}
+                </form>
+            </td>
+
+            <td style="padding-top: 40px; font-size: 2em;">
+                {% if checkin_yn %}
+                    {% if seat == None %}
+                        <form action = "/seats/seat/" method="get" name = "reser1">
+                        <input type ="hidden" name = "re_idx" value="{{idx}}">
+                        <font size="4">좌석을 지정해주셔야 체크인이 가능합니다.</font><br>
+                        </form>  
+                    {% else %}
+                    <br>
+                    <form action = "/checkin/success/" method="get" name = "reser2">
+                        <input type ="hidden" name = "re_idx" value="{{idx}}">
+                        <input type ="hidden" name ="seat" value ="{{passenger.seat}}">
+                        <input type="submit"  value = "체크인 하기" id="btn" style="font-size:19px; width:150px; height:45px; ">
+                    </form>   
+                    <br> 
+                    {% endif %}
+                {% else %}
+                <p style="font-size: 22px;">체크인은 출발 24시간 전부터 가능합니다.</p>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</div>
+<hr>
+
+{% else %}
+<br><br><br><br>
+<div align="center">
+    <img src="/static/checkin/images/check_blue.png" alt="check" style="width:90px"><br><br>
+    <p class="gray"><font size="5"><b>이미 체크인이 완료된 예약내역입니다</font></b></p>
+</div>
+<br><br><br><br><br>
+<div id="wrapper" >
+    <table id="keywords" style="width: 1700px;">
+        <thead>
+        <tr style="text-align: center; padding-top: 200px;" >
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold;">여정</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold; padding-right: 83px;">출도착시간</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold;">비행기</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold; padding-left: 20px;padding-right: 20px;">좌석</td>
+            <td style="padding-top: 23px; padding-bottom: 23px; font-size: 23px; font-weight: bold; width:300px; ">추가기능</td>
+        </tr>
+        </thead>
+        <tr>
+            <td style="padding-top: 40px">{{reservation.f_no.route_no.departure.name}} {{reservation.f_no.route_no.departure.code}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30"> 
+                {{reservation.f_no.route_no.arrival.name}} {{reservation.f_no.route_no.arrival.code}}
+                <br><br>
+                {{reservation.f_no.departure_date}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30">
+                {{reservation.f_no.arrival_date}}
+            </td>
+
+            <td style="padding-right: 70px; padding-top: 30px;">
+                {{reservation.f_no.departure_time}}
+                <img src="/static/images/plane.png" alt="airplane img" width="30">
+                {{reservation.f_no.arrival_time}}
+            </td>
+
+            <td>
+                <!--KE101일때, B737-800(aircraft737)링크 , KE102일때, A380(aircraft777)링크 -->
+                {% if reservation.f_no.at_no.no == 'KE101' %}
+                    <a href="/airline/aircraft737/" style="text-decoration: underline;"">
+                        B737-800   
+                    </a>
+                {% else %}
+                    <a href="airline/aircraft777/" style="text-decoration: underline;"">
+                        A380   
+                    </a>
+                {% endif %} 
+            </td>  
+
+            <td style="padding-top: 40px">
+                {{passenger.seat}}<br><br>                                     
+            </td>
+            <td>
+               <div align="center">
+                   <form action = "/checkin/boardingpass/" method="get" name = "reser2">
+                       <input type ="hidden" name = "re_idx" value="{{idx}}">
+                       <input type="submit"  value = "항공권 보기" id="btn" style="width:150px; margin-bottom: 10px;">
+                   </form>
+                   <form action="/seats/seat/" method="get" name = "seat">
+                       <input type ="hidden" name = "re_idx" value="{{idx}}">
+                       <input type="submit" value ="좌석 변경" id="btn" style="width:150px; margin-top: 10px;">
+                   </form>
+               </div>
+           </td>
+       </tr>
+   </table>
+</div>
+<hr>
+{%endif%}
+
+
+{% endblock %}
